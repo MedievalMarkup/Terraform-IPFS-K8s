@@ -1,7 +1,7 @@
 variable "namespace" {
   description = "Name of the Kubernetes namespace"
   type        = string
-  default     = "cipher"
+  default     = ""
 }
 
 variable "name" {
@@ -94,7 +94,7 @@ variable "volumes" {
     {
       name =  "ipfs-data",
       persistent_volume_claim = {
-        claim_name = "pvcforcipher"
+        claim_name = "pvcfor"
       },
       host_path = null,
       secret = null

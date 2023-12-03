@@ -1,7 +1,7 @@
 variable "namespace" {
   description = "Name of the Kubernetes namespace"
   type        = string
-  default     = "cipher"
+  default     = ""
 }
 
 variable "name" {

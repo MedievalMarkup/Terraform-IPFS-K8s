@@ -1,13 +1,13 @@
 variable "namespace" {
   description = "Name of the Kubernetes namespace"
   type        = string
-  default     = "cipher"
+  default     = ""
 }
 
 variable "name" {
   description = "Name of the rabbit service"
   type        = string
-  default     = "cipher-IPFS-node"
+  default     = "-IPFS-node"
 }
 
 variable "ipfs_node_image" {
@@ -94,7 +94,7 @@ variable "volumes" {
     {
       name =  "ipfs-data",
       persistent_volume_claim = {
-        claim_name = "pvcforcipher"
+        claim_name = "pvcfor"
       },
       host_path = null,
       secret = null

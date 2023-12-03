@@ -75,7 +75,7 @@ module "ipfs_cluster" {
 resource "null_resource" "delete broadcast"{
   count = length(var.volume_names_node)
   provisioner "local-exec" {
-    command = "kubectl -n ${var.cipher_namespace} exec -it $(kubectl -n ${var.cipher_namespace} get pods --selector=app=${var.volume_names_node[count.index]} -o jsonpath='{.items[0].metadata.name}') -- ipfs bootstrap rm all"
+    command = "kubectl -n ${var._namespace} exec -it $(kubectl -n ${var._namespace} get pods --selector=app=${var.volume_names_node[count.index]} -o jsonpath='{.items[0].metadata.name}') -- ipfs bootstrap rm all"
   }
   environment = {
     CAD = "/"
@@ -87,7 +87,7 @@ resource "null_resource" "delete broadcast"{
   image_pull_secrets = concat(var.image_pull_secrets, [{
     name = var.image_secret_name
   }])
-  namespace = var.cipher_namespace
+  namespace = var._namespace
   name      = var.setup_name
   volume_mounts = concat(var.setup_volume_mounts, [{
     mount_path = "/opt/app-root/temp",
@@ -97,7 +97,7 @@ resource "null_resource" "delete broadcast"{
   volumes = concat(var.setup_volumes, [{
     name = "${var.setup_name}-volume",
     persistent_volume_claim = {
-      claim_name = "${var.cipher_pvc_name}"
+      claim_name = "${var._pvc_name}"
     },
     host_path = null,
     secret    = null

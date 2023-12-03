@@ -19,7 +19,7 @@ variable "namespace" {
 variable "ipfs_name" {
   description = "Name for IPFS"
   type        = string
-  default     = "cipher-ipfs"
+  default     = "-ipfs"
 }
 
 variable "type" {
